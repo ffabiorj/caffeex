@@ -1,3 +1,5 @@
 from django.contrib import admin
+from core.models import Stock, CoffeeBag
 
-# Register your models here.
+
+admin.site.register([Stock, CoffeeBag])
