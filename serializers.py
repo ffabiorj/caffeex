@@ -1,5 +1,7 @@
 from rest_framework import serializers
+from django.contrib.auth.models import User
 from core.models import Stock, CoffeeBag
+
 
 class CoffeeBagSerializer(serializers.ModelSerializer):
 
@@ -14,4 +16,4 @@ class StockSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Stock
-        exclude = ['user']
+        exclude = ['owner']

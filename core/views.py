@@ -5,13 +5,12 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 
-
 class StockList(APIView):
     """
     List all Stock list, or create a new stock.
-    """
+    """    
     def get(self, request, format=None):
-        stock = Stock.objects.all()
+        stock = Stock.objects.filter(owner=request.user)
         serializer = StockSerializer(stock, many=True)
         return Response(serializer.data)
 
