@@ -8,7 +8,7 @@ class Stock(models.Model):
     origin_farm = models.CharField('Origin farm', max_length=100)
     quantity_bags_availible = models.IntegerField(blank=True, null=True)
     stock_capacity = models.IntegerField(blank=False, null=False)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    owner = models.ForeignKey(User, related_name='stock', on_delete=models.CASCADE)
 
     def space_availible(self):
         return self.stock_capacity - self.quantity_bags_availible
