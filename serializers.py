@@ -7,7 +7,7 @@ class CoffeeBagSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = CoffeeBag
-        exclude = ['stock', 'created']
+        exclude = ['created']
 
 
 class StockSerializer(serializers.ModelSerializer):
@@ -16,4 +16,4 @@ class StockSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Stock
-        exclude = ['owner']
+        fields = '__all__'
