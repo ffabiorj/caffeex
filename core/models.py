@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
     
 
 class Stock(models.Model):
-    name = models.CharField('Name stock', max_length=100)
+    name = models.CharField('Name stock', max_length=100, blank=False)
     origin_farm = models.CharField('Origin farm', max_length=100)
     quantity_bags_availible = models.IntegerField(blank=True, null=True)
     stock_capacity = models.IntegerField(blank=False, null=False)
