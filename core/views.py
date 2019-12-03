@@ -1,16 +1,23 @@
 from core.models import Stock, CoffeeBag
+from django.shortcuts import get_object_or_404
 from serializers import StockSerializer, CoffeeBagSerializer
 from django.http import Http404
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 
+
 class StockList(APIView):
     """
     List all Stock list, or create a new stock.
-    """    
+    """
+
     def get(self, request, format=None):
-        stock = Stock.objects.filter(owner=request.user)
+        owner = request.user.is_superuser
+        if owner:
+            stock = Stock.objects.all()
+        else:
+            stock = Stock.objects.filter(owner=request.user)
         serializer = StockSerializer(stock, many=True)
         return Response(serializer.data)
 
@@ -19,13 +26,14 @@ class StockList(APIView):
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.erros, status=status.HTTP_400_BAD_REQUEST)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 class StockDetail(APIView):
     """
     retrieve, update or delete a stock instance
     """
+
     def get_object(self, pk):
         try:
             return Stock.objects.get(pk=pk)
@@ -43,7 +51,7 @@ class StockDetail(APIView):
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
-        return Response(serializer.erros, status=status.HTTP_400_BAD_REQUEST)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     def delete(self, request, pk, format=None):
         stock = self.get_object(pk)
@@ -51,13 +59,18 @@ class StockDetail(APIView):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 
-
 class CoffeeBags(APIView):
     """
     List all CoffeBags list, or create a new stock.
     """
+
     def get(self, request, format=None):
-        coffeebags = CoffeeBag.objects.all()
+        owner = request.user.is_superuser
+        if owner:
+            coffeebags = CoffeeBag.objects.all()    
+        else:
+            # coffeebags = CoffeeBag.objects.filter(stock=request.stock.owner)
+            coffeebags = CoffeeBag.objects.filter(stock=request.user.id)
         serializer = CoffeeBagSerializer(coffeebags, many=True)
         return Response(serializer.data)
 
@@ -66,19 +79,23 @@ class CoffeeBags(APIView):
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.erros, status=status.HTTP_400_BAD_REQUEST)
-
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 class CoffeeBagDetail(APIView):
     """
     retrieve, update or delete a coffeeBag instance
     """
+
+    # def get_object(self, pk):
+    #     try:
+    #         return CoffeeBag.objects.get(pk=pk)
+    #     except CoffeeBag.DoesNotExist:
+    #         raise Http404
     def get_object(self, pk):
-        try:
-            return CoffeeBag.objects.get(pk=pk)
-        except CoffeeBag.DoesNotExist:
-            raise Http404
+        obj = get_object_or_404(self.get_queryset(), pk=self.kwargs["pk"])
+        self.check_object_permissions(self.request, obj)
+        return obj
 
     def get(self, request, pk, format=None):
         coffeebag = self.get_object(pk)
@@ -91,7 +108,7 @@ class CoffeeBagDetail(APIView):
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
-        return Response(serializer.erros, status=status.HTTP_400_BAD_REQUEST)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     def delete(self, request, pk, format=None):
         coffeebag = self.get_object(pk)
