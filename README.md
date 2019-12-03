@@ -9,12 +9,15 @@ Development tools
 
 1. Clone the repository.
 2. Enter in the pholder
-2. create a environment with python 3.7.
-3. Active the environment.
-4. Install the dependencies.
-5. Run the migrate
-8. Run the project.
-7. Access the link.
+3. create a environment with python 3.7.
+4. Active the environment.
+5. Install the dependencies.
+6. Rename the file env_exemplo
+7. Run the migrate
+8. Create a superuser login
+9. Run the project.
+10. Access the link.
+11. Enter with the login
 
 
 ```
@@ -23,9 +26,12 @@ cd caffeex
 python3 -m venv .venv
 sourch .venv/bin/activate
 pip install -r requirements.txt
+mv .env_exemplo .env
 python manage.py migrate
+python manage.py createsuperuser
 python manage.py runserver
 http://127.0.0.1:8000/api/v1/stocks/
+put the user and password
 ```
 
 ## Endpoints da api
@@ -38,9 +44,45 @@ http://127.0.0.1:8000/api/v1/coffeebag/<id>
 
 ```
 
+## To do a post method you will need:
+
+```
+Exemplo: Stock
+{
+    "name": "Farm",
+    "origin_farm": "South",
+    "quantity_bags_availible": 30,
+    "stock_capacity": 50,
+    "owner": user-id
+}
+Coffeebag
+{
+    "coffee_type": "Black",
+    "origin": "Norte",
+    "expirate_date": "2019-12-03",
+    "quantity_bags": 10,
+    "stock": stock-id   
+}
+
+```
+
 ## Execute tests
-1. Realizar setup dos test
+1. To test the api
 
 ```
 python manage.py test
 ```
+
+## I made deploy the app in the heroku.
+1. You need login first: 
+    - teste/eu12345678
+2. Access the endpoints
+
+```
+https://caffeex-fabio.herokuapp.com/api/v1/stocks/
+https://caffeex-fabio.herokuapp.com/api/v1/stock/1
+https://caffeex-fabio.herokuapp.com/api/v1/coffeebags/
+https://caffeex-fabio.herokuapp.com/api/v1/coffeebag/
+```
+
+### Obs. I will be keeping improve this app.
