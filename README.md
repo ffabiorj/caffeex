@@ -1,11 +1,11 @@
 [![Build Status](https://travis-ci.com/ffabiorj/caffeex.svg?branch=master)](https://travis-ci.com/ffabiorj/caffeex)
-# API OF STOCK
+# API OF STOCK COFFEES
 Development tools
 
 * Django
 * Django rest Framework
 
-## Como executar o api localmente.
+## How to run locally.
 
 1. Clone the repository.
 2. Enter in the pholder
