@@ -8,9 +8,9 @@ Development tools
 ## How to run locally.
 
 1. Clone the repository.
-2. Enter in the pholder
-3. create a environment with python 3.7.
-4. Active the environment.
+2. Enter in the folder
+3. Create a enviroment with python 3.7.
+4. Active the enviroment.
 5. Install the dependencies.
 6. Rename the file env_exemplo
 7. Run the migrate

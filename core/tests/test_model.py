@@ -1,7 +1,6 @@
 from django.test import TestCase
 from core.models import Stock, CoffeeBag
 from django.contrib.auth.models import User
-from datetime import datetime
 
 
 class StockTest(TestCase):
@@ -29,7 +28,7 @@ class StockTest(TestCase):
         self.assertEqual(coffex.name, 'Coffex')
         self.assertEqual(Hall.name, 'Hall')
 
-    
+
 class CoffeeBagTest(TestCase):
     """ Test module for CoffeeBag model."""
 
@@ -42,14 +41,14 @@ class CoffeeBagTest(TestCase):
             owner=user
         )
         CoffeeBag.objects.create(
-            coffee_type='Black', 
+            coffee_type='Black',
             origin='West',
             expirate_date='2020-12-12',
             quantity_bags=20,
             stock=self.stock
         )
         CoffeeBag.objects.create(
-            coffee_type='Blue', 
+            coffee_type='Blue',
             origin='South',
             expirate_date='2020-12-12',
             quantity_bags=20,

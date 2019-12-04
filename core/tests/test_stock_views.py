@@ -2,8 +2,8 @@ import json
 from rest_framework import status
 from django.test import TestCase, Client
 from django.urls import reverse
-from core.models import Stock, CoffeeBag
-from serializers import StockSerializer, CoffeeBagSerializer
+from core.models import Stock
+from serializers import StockSerializer
 from django.contrib.auth.models import User
 
 
@@ -106,8 +106,8 @@ class CreateStock(TestCase):
         self.client.force_login(self.user)
 
         response = self.client.post(reverse('stocks'),
-        data=json.dumps(self.valid_payload),
-        content_type='application/json')
+                                    data=json.dumps(self.valid_payload),
+                                    content_type='application/json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
 
 
@@ -118,7 +118,7 @@ class UpdateAnStock(TestCase):
         self.client.force_login(self.user)
 
         self.stock = Stock.objects.create(
-            name='Casa', 
+            name='Casa',
             origin_farm='North',
             quantity_bags_availible=30,
             stock_capacity=50,
@@ -130,7 +130,7 @@ class UpdateAnStock(TestCase):
             'origin_farm': 'South',
             'quantity_bags_availible': 10,
             'stock_capacity': 30,
-            'owner':self.user.id
+            'owner': self.user.id
         }
 
         self.invalid_payload = {
@@ -138,7 +138,7 @@ class UpdateAnStock(TestCase):
             'origin_farm': '',
             'stock_capacity': 30,
         }
-    
+
     def test_valid_update_stock(self):
         response = self.client.put(
             reverse('stock', kwargs={'pk': self.stock.pk}),

@@ -1,5 +1,4 @@
 from core.models import Stock, CoffeeBag
-from django.shortcuts import get_object_or_404
 from serializers import StockSerializer, CoffeeBagSerializer
 from django.http import Http404
 from rest_framework.views import APIView

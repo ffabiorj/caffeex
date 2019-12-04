@@ -1,7 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-    
 
 class Stock(models.Model):
     name = models.CharField('Name stock', max_length=100, blank=False)
