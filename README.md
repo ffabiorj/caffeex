@@ -85,4 +85,4 @@ https://caffeex-fabio.herokuapp.com/api/v1/coffeebags/
 https://caffeex-fabio.herokuapp.com/api/v1/coffeebag/
 ```
 
-### Obs. I will be keeping improve this app.
+### Obs. I will be keeping improve this api.
