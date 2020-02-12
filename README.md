@@ -1,5 +1,5 @@
 [![Build Status](https://travis-ci.com/ffabiorj/caffeex.svg?branch=master)](https://travis-ci.com/ffabiorj/caffeex)
-# API OF STOCK COFFEES
+# STOCK COFFEES' API
 Development tools
 
 * Django
@@ -34,7 +34,7 @@ http://127.0.0.1:8000/api/v1/stocks/
 put the user and password
 ```
 
-## Endpoints da api
+## Endpoints of api
 To access the endpoints, you need to create a login.
 ```
 http://127.0.0.1:8000/api/v1/stocks/
@@ -73,7 +73,7 @@ Coffeebag
 python manage.py test
 ```
 
-## I made deploy the app in the heroku.
+## I deployed the app in the heroku.
 1. You need login first: 
     - teste/eu12345678
 2. Access the endpoints
@@ -85,4 +85,4 @@ https://caffeex-fabio.herokuapp.com/api/v1/coffeebags/
 https://caffeex-fabio.herokuapp.com/api/v1/coffeebag/
 ```
 
-### Obs. I will be keeping improve this api.
+### Obs. I'll keeping improve this api.
