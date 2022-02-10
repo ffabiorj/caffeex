@@ -3,7 +3,7 @@ astroid==2.3.3
 attrs==19.3.0
 backcall==0.1.0
 decorator==4.4.1
-Django==2.2.13
+Django==2.2.27
 djangorestframework==3.10.3
 importlib-metadata==0.23
 ipython-genutils==0.2.0
